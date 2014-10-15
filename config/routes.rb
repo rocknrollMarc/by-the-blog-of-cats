@@ -2,6 +2,18 @@ Rails.application.routes.draw do
 
   root to: "users#login"
 
+  resources :users, :except => [:index, :destroy]
+
+  resources :pages do
+    resources :posts, :only => [:create, :show]
+  end
+
+  resources :posts, :only => [:update, :destroy] do
+    resources :comments, :only => [:create, :index]
+  end
+
+  resources :comments, :only => [:update, :destroy]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
