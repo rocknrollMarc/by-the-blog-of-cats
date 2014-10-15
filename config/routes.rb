@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   resources :users, :except => [:index, :destroy]
 
   resources :pages do
-    resources :posts, :only => [:create, :show]
+    resources :posts, :only => [:new, :create]
   end
 
-  resources :posts, :only => [:update, :destroy] do
+  resources :posts, :only => [:show, :edit, :update, :destroy] do
     resources :comments, :only => [:create, :index]
   end
 
