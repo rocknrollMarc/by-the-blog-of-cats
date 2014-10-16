@@ -1,8 +1,10 @@
 <h1>New Page</h1>
 
-<%= form_tag '/pages', method: 'POST' do %>
+<%= form_tag "/pages", method: :post do %>
 
   <%= label_tag('page[theme]', 'Theme:') %>
   <%= text_field_tag('page[theme]') %>
+
+  <%= submit_tag("Submit") %>
 
 <% end %>

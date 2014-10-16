@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   def create
     @page = Page.new(page_params)
     @page.save
-    redirect_to '/pages/:page_id'
+    redirect_to page_path(id: @page.id)
   end
 
   def show
@@ -26,19 +26,19 @@ class PagesController < ApplicationController
   def update
     @page = Page.find(params[:id])
     @page.update(page_params)
-    redirect_to '/pages/:page_id'
+    redirect_to page_path(id: @page.id)
   end
 
   def destroy
     @page = Page.find(params[:id])
     @page.destroy
-    redirect_to '/users/:user_id'
+    redirect_to '/pages'
   end
 
   private
 
   def page_params
-    params.permit(:page).require(:theme)
+    params.require(:page).permit(:theme)
   end
 
 end

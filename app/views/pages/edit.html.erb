@@ -1,0 +1,14 @@
+<h1>Edit Pages</h1>
+
+<%= form_tag "/pages/#{params[:id]}", method: :put do %>
+
+  <%= label_tag('page[theme]', 'Theme:') %>
+  <%= text_field_tag('page[theme]') %>
+
+  <%= submit_tag('Submit') %>
+
+<% end %>
+
+<%= form_tag "/pages/#{params[:id]}", method: :delete do %>
+  <%= submit_tag("Delete") %>
+<% end %>
