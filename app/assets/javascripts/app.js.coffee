@@ -1,0 +1,1 @@
+blog = angular.module('blog', [])
