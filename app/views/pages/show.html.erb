@@ -1,1 +1,11 @@
-<%= @page.theme %>
+<h1>Page Show</h1>
+
+<%= @page.theme %><br/>
+
+<% @posts.each do |post| %>
+  <%= post.content %><br/>
+  <% comments = Comment.where(post_id: post.id) %>
+  <% comments.each do |comment| %>
+    <%= comment.content %><br/>
+  <% end %>
+<% end %>

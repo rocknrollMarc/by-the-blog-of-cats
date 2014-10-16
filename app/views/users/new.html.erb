@@ -1,0 +1,11 @@
+<h1>New Video</h1>
+
+<%= form_tag '/users', method: 'POST' do %>
+
+  <%= label_tag('user[name]', 'Username:') %>
+  <%= text_field_tag('user[name]') %>
+
+  <%= label_tag('user[password_digest]', 'Password:') %>
+  <%= text_field_tag('user[password_digest]') %>
+
+<% end %>

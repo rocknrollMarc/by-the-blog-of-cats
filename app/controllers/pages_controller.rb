@@ -16,6 +16,7 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id])
+    @posts = Post.where(page_id: @page.id)
   end
 
   def edit
