@@ -1,0 +1,90 @@
+  <div class="add-comment-to-post">
+    <%= form_tag "/posts/#{post.id}/comments", method: "POST" do %>
+
+      <%= label_tag "comment[content]", "Add Comment on Post" %>
+      <%= text_field_tag("comment[content]") %>
+
+      <%= submit_tag("Submit Comment on Post") %>
+
+    <% end %><!-- Post Comments Create Form Tag -->
+  </div>
+
+
+  <% @comments_on_posts = Comment.where("commentable_id = #{post.id} AND commentable_type = 'post'") %>
+
+
+  <div id="post-comments">
+    <% for post_comment in @comments_on_posts %>
+
+
+
+      <div class="comment">
+        <%= post_comment.content %>
+      </div>
+
+      <div>
+        <%= form_tag "/comments/#{post_comment.id}/comments", method: "POST" do %>
+
+            <%= label_tag "comment[content]", "Add Comment on Comment" %>
+            <%= text_field_tag "comment[content]" %>
+
+            <%= submit_tag "Submit Comment on Comment" %>
+        <% end %>
+      </div>
+
+
+
+
+      <% @comments_on_comments = Comment.where("commentable_id = #{post_comment.id} AND commentable_type = 'comment'") %>
+
+
+
+
+
+
+
+
+      <% for comment_comment in @comments_on_comments %>
+        <div class="comment-comments">
+          <%= comment_comment.content %>
+        </div>
+        <%= form_tag "/comments/#{comment_comment.id}/comments", method: "POST" do %>
+
+          <%= label_tag "comment[content]", "Add Comment on Comment" %>
+          <%= text_field_tag "comment[content]" %>
+
+          <%= submit_tag "Submit Comment on Comment" %>
+
+        <% end %><!-- Comment Comments Create Form Tag -->
+
+
+
+
+
+        <% @comments_on_comments_on_comments = Comment.where("commentable_id = #{comment_comment.id} AND commentable_type = 'comment'") %>
+
+        <% for comment in @comments_on_comments_on_comments %>
+          <div class="comment-comments">
+            <%= comment.content %>
+          </div>
+          <%= form_tag "/comments/#{comment.id}/comments", method: "POST" do %>
+
+            <%= label_tag "comment[content]", "Add Comment on Comment" %>
+            <%= text_field_tag "comment[content]" %>
+
+            <%= submit_tag "Submit Comment on Comment" %>
+
+          <% end %><!-- Comment Comments Create Form Tag -->
+
+
+
+        <% end %>
+
+      <% end %>
+
+
+
+
+
+    <% end %>
+  </div>

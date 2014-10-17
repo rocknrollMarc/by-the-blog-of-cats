@@ -68,3 +68,5 @@ end
 gem 'angular-rails-templates'
 
 gem 'devise'
+
+gem 'closure_tree'

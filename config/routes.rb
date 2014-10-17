@@ -14,7 +14,10 @@ Rails.application.routes.draw do
     resources :comments, :only => [:create, :index]
   end
 
-  resources :comments, :only => [:update, :destroy]
+  resources :comments, :only => [:update, :destroy] do
+    resources :comments, :only => [:new, :create, :index]
+    get '/comments/new/(:parent_id)', to: 'comments#new', as: :new_comment
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

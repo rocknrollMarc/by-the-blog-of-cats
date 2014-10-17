@@ -10,8 +10,32 @@
   <%= post.content %><br/>
   <%= link_to "Show Post", "/posts/#{post.id}" %><br/>
   <%= link_to "Edit Post", "/posts/#{post.id}/edit" %><br/>
-  <% comments = Comment.where(post_id: post.id) %>
-  <% comments.each do |comment| %>
-    <%= comment.content %><br/>
-  <% end %>
+
+  <div id="post-comments">
+    <% @comments_on_posts = Comment.where("commentable_id = #{post.id} AND commentable_type = 'post'") %>
+    <% for post_comment in @comments_on_posts %>
+      <% @comment = post_comment %>
+      <% if @comment.parent %>
+        <%= render 'comments/comment', comment: @comment.parent, from_reply_form: true %>
+      <% end %>
+      <%= render 'comments/form' %>
+    <% end %>
+  </div>
+
 <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
