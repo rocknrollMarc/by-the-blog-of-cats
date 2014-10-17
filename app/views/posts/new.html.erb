@@ -1,11 +1,13 @@
 <h1>New Post</h1>
 
-<%= form_tag '/pages/:page_id/posts', method: 'POST' do %>
+<%= form_tag "/pages/#{params[:page_id]}/posts", method: 'POST' do %>
 
   <%= label_tag('post[title]', 'Title:') %>
   <%= text_field_tag('post[title]') %>
 
   <%= label_tag('post[content]', 'Content:') %>
   <%= text_field_tag('post[content]') %>
+
+  <%= submit_tag("Submit Post") %>
 
 <% end %>

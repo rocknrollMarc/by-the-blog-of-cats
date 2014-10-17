@@ -1,9 +1,0 @@
-<%= form_tag '/login', method: 'POST' do %>
-
-  <%= label_tag('user[name]', 'Name:') %>
-  <%= text_field_tag('user[name]') %>
-
-  <%= label_tag('user[password_digest]', 'Password:') %>
-  <%= text_field_tag('user[password_digest]') %>
-
-<% end %>

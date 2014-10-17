@@ -1,1 +1,8 @@
-<%= @user.name %>
+<%= @user.email %>
+
+<% @pages.each do |page| %>
+  <p><%= page.theme %></p>
+  <p><%= link_to "Show Page", "/pages/#{page.id}" %></p>
+<% end %>
+
+<%= link_to "Create a Page","/pages/new" %>

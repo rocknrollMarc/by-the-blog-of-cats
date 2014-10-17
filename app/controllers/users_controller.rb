@@ -8,16 +8,20 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create
-    @user = User.new(user_params)
-    @user.save
-    redirect_to '/users/:user_id'
-  end
+  # def create
+  #   # @user = User.new(user_params)
+  #   # @user.save
+  #   redirect_to '/users/@user.id'
+  # end
 
   def show
     if current_user
-      @user = User.find(params[:id])
-      render '/users/@user.id'
+      @user = current_user
+      userpages = Userpages.where(user_id: @user.id)
+      @pages = []
+      userpages.each do |up|
+        @pages << Page.find_by(id: up.page_id)
+      end
     else
       redirect_to '/users/sign_in'
     end
@@ -30,7 +34,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    redirect_to '/users/:user_id'
+    redirect_to "/users/#{@user.id}"
   end
 
   private

@@ -1,0 +1,10 @@
+<h1>Edit Post</h1>
+
+<%= form_tag "/posts/#{@post.id}", method: :put do %>
+
+  <%= label_tag('post[content]', "Content:") %>
+  <%= text_field_tag('post[content]') %>
+
+  <%= submit_tag("Submit Post") %>
+
+<% end %>

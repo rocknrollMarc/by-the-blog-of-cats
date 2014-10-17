@@ -7,19 +7,19 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.save
-    redirect_to '/pages/:page_id'
+    redirect_to '/pages'
   end
 
   def update
     @comment = Comment.find(params[:id])
     @comment.update(comment_params)
-    redirect_to '/pages/:page_id'
+    redirect_to '/pages'
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     @comment.update
-    redirect_to '/pages/:page_id'
+    redirect_to '/pages'
   end
 
   private

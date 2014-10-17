@@ -2,12 +2,17 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @page = Page.find(params[:page_id])
   end
 
   def create
     @post = Post.new(post_params)
+    @page = Page.find_by(id: params[:page_id])
+    @user = current_user
+    @post.user_id = @user.id
+    @post.page_id = @page.id
     @post.save
-    redirect_to '/pages/:page_id'
+    redirect_to "/pages/#{@page.id}"
   end
 
   def show
@@ -21,13 +26,14 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.update(post_params)
-    redirect_to '/pages/:page_id'
+    @page = Page.find(@post.page_id)
+    redirect_to "/pages/#{@page.id}"
   end
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to '/pages/:page_id'
+    redirect_to "/pages/#{@page.id}"
   end
 
   private

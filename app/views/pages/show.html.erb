@@ -2,8 +2,13 @@
 
 <%= @page.theme %><br/>
 
+<p><%= link_to "Edit Page", "/pages/#{@page.id}/edit" %></p>
+
+<p><%= link_to "New Post", "/pages/#{@page.id}/posts/new" %></p>
+
 <% @posts.each do |post| %>
-  <%= post.content %><br/>
+  <%= post.content %>
+  <%= link_to "Edit Post", "/posts/#{post.id}/edit" %><br/>
   <% comments = Comment.where(post_id: post.id) %>
   <% comments.each do |comment| %>
     <%= comment.content %><br/>

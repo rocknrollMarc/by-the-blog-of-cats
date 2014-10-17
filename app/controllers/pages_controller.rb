@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, :except => [:index]
 
   def index
     @pages = Page.all
@@ -11,6 +12,12 @@ class PagesController < ApplicationController
   def create
     @page = Page.new(page_params)
     @page.save
+    @user = current_user
+    userpage = Userpages.new
+    userpage.user_id = @user.id
+    userpage.page_id = @page.id
+    userpage.role = "admin"
+    userpage.save
     redirect_to page_path(id: @page.id)
   end
 
