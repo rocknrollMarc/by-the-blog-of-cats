@@ -1,8 +1,29 @@
-<%= @user.email %>
+<div class="user-sidebar">
+  <div class="user-image">
+    <img src="<%= @user.image_url %>">
+  </div>
 
-<% @pages.each do |page| %>
-  <p><%= page.theme %></p>
-  <p><%= link_to "Show Page", "/pages/#{page.id}" %></p>
-<% end %>
+  <div class="user-info">
+    <h3><%= @user.name %></h3>
+    <div><%= link_to "Edit Info","/users/#{@user.id}/edit" %></div>
+  </div>
 
-<%= link_to "Create a Page","/pages/new" %>
+  <div class="new-page-link">
+    <%= link_to "Create a Page","/pages/new" %>
+  </div>
+</div>
+
+<div class="user-content">
+  <div class="user-pages">
+    <% @pages.each do |page| %>
+      <p><%= page.theme %></p>
+      <p><%= link_to "Show Page", "/pages/#{page.id}" %></p>
+    <% end %>
+  </div>
+  <!-- <div class="user-posts"> -->
+    <%# @posts.each do |post| %>
+      <p><%#= post.content %></p>
+      <p><%#= link_to "Show Post", "/posts/#{post.id}" %></p>
+    <%# end %>
+  <!-- </div> -->
+</div>
