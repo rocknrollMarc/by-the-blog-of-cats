@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-  root to: "users#login"
+  devise_for :users
+  root to: "users#show"
 
-  resources :users, :except => [:index, :destroy]
+  # resources :users, :except => [:destroy]
 
   resources :pages do
     resources :posts, :only => [:new, :create]

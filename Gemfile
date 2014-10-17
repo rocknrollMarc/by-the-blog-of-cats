@@ -66,3 +66,5 @@ group :production, :staging do
 end
 
 gem 'angular-rails-templates'
+
+gem 'devise'

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
 
   def login
   end
@@ -14,10 +15,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    if User.find(params[:id])
+    if current_user
       @user = User.find(params[:id])
+      render '/users/@user.id'
     else
-      redirect_to '/login'
+      redirect_to '/users/sign_in'
     end
   end
 

@@ -8,24 +8,24 @@
 
 User.create([
   {
-    name:     "User 1",
-    password_digest: "password",
+    name:     "User 1"
+    # password_digest: "password",
   },
   {
-    name:     "User 2",
-    password_digest: "password",
+    name:     "User 2"
+    # password_digest: "password",
   },
   {
-    name:     "User 3",
-    password_digest: "password",
+    name:     "User 3"
+    # password_digest: "password",
   },
   {
-    name:     "User 4",
-    password_digest: "password",
+    name:     "User 4"
+    # password_digest: "password",
   },
   {
-    name:     "User 5",
-    password_digest: "password"
+    name:     "User 5"
+    # password_digest: "password"
   }
 ])
 
