@@ -7,7 +7,8 @@
 <p><%= link_to "New Post", "/pages/#{@page.id}/posts/new" %></p>
 
 <% @posts.each do |post| %>
-  <%= post.content %>
+  <%= post.content %><br/>
+  <%= link_to "Show Post", "/posts/#{post.id}" %><br/>
   <%= link_to "Edit Post", "/posts/#{post.id}/edit" %><br/>
   <% comments = Comment.where(post_id: post.id) %>
   <% comments.each do |comment| %>
