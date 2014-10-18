@@ -70,3 +70,7 @@ gem 'angular-rails-templates'
 gem 'devise'
 
 gem 'closure_tree'
+
+gem 'unicorn'
+
+ruby "2.0.0"
