@@ -15,6 +15,19 @@
       <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
           <% if current_user %>
+            <% @userpages = Userpages.where(user_id: current_user.id) %>
+            <% @pages = [] %>
+            <% @page_ids = [] %>
+            <% @posts = [] %>
+            <% @userpages.each do |userpage| %>
+              <% @pages << Page.where(id: userpage.page_id) %>
+              <% @page_ids << userpage.page_id %>
+            <% end %>
+            <% @page_ids.each do |page_id| %>
+              <% @posts << Post.where(page_id: page_id) %>
+            <% end %>
+            <% @pages.flatten! %>
+            <% @posts.flatten! %>
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -31,25 +44,24 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Page 1</a></li>
-                    <li><a href="#">Page 2</a></li>
-                    <li><a href="#">Page 3</a></li>
+                    <% @pages.each do |page| %>
+                      <li><%= link_to "#{page.title}", "/pages/#{page.id}" %></a></li>
+                    <% end %>
                     <li class="divider"></li>
-                    <li>My Pages</li>
-                    <li>All Pages</li>
+                    <li><%= link_to "All Pages", "/pages" %></li>
                   </ul>
                 </li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Posts <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Post 1</a></li>
-                    <li><a href="#">Post 2</a></li>
-                    <li><a href="#">Post 3</a></li>
+                    <% @posts.each do |post| %>
+                      <li><%= link_to "#{post.title}", "/posts/#{post.id}" %>
+                    <% end %>
                     <li class="divider"></li>
-                    <li>All Posts</li>
+                    <li><%= link_to "All Posts", "/posts" %></li>
                   </ul>
                 </li>
-                <li><%= link_to 'sign out', destroy_user_session_path, :method => :delete %></li>
+                <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           <% else %>
@@ -64,6 +76,12 @@
     <div class="container">
       <%= yield %>
     </div>
+
+    <footer>
+      <div class="copyright">
+        <p class="copyright show-text">Copyright &copy; By the Blog of Cats 2014</p>
+      </div>
+    </footer>
 
   </body>
 </html>

@@ -2,6 +2,12 @@
 
 <%= form_tag "/pages", method: :post do %>
 
+  <%= label_tag('page[title]', 'Title:') %>
+  <%= text_field_tag('page[title]') %>
+
+  <%= label_tag('page[summary]', 'Summary:') %>
+  <%= text_field_tag('page[summary]') %>
+
   <%= label_tag('page[theme]', 'Theme:') %>
   <%= text_field_tag('page[theme]') %>
 

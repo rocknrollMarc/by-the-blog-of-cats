@@ -1,29 +1,32 @@
-<div class="user-sidebar">
+<div class="user-show-sidebar">
   <div class="user-image">
-    <img src="<%= @user.image_url %>">
+    <img src="<%= @user.image_url %>" class="user-image">
   </div>
 
-  <div class="user-info">
+  <div class="user-show-info">
     <h3><%= @user.name %></h3>
     <div><%= link_to "Edit Info","/users/#{@user.id}/edit" %></div>
   </div>
 
-  <div class="new-page-link">
+  <div class="user-show-page-create">
     <%= link_to "Create a Page","/pages/new" %>
+  </div>
+  <div class="user-show-pages">
+    <% @pages.each do |page| %>
+      <div class="user-page">
+        <p><%= page.title %></p>
+        <p><%= link_to "Show Page", "/pages/#{page.id}" %></p>
+      </div>
+    <% end %>
   </div>
 </div>
 
-<div class="user-content">
-  <div class="user-pages">
-    <% @pages.each do |page| %>
-      <p><%= page.theme %></p>
-      <p><%= link_to "Show Page", "/pages/#{page.id}" %></p>
+<div class="user-show-content">
+
+  <div class="user-show-content-posts">
+    <% @posts.each do |post| %>
+      <p><%= post.content %></p>
+      <p><%= link_to "Show Post", "/posts/#{post.id}" %></p>
     <% end %>
   </div>
-  <!-- <div class="user-posts"> -->
-    <%# @posts.each do |post| %>
-      <p><%#= post.content %></p>
-      <p><%#= link_to "Show Post", "/posts/#{post.id}" %></p>
-    <%# end %>
-  <!-- </div> -->
 </div>

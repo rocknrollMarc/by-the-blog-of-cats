@@ -1,4 +1,6 @@
-<h1>Page Show</h1>
+<h1><%= @page.title %></h1>
+
+<p><%= @page.summary %></p>
 
 <%= @page.theme %><br/>
 
@@ -15,9 +17,7 @@
     <% @comments_on_posts = Comment.where("commentable_id = #{post.id} AND commentable_type = 'post'") %>
     <% for post_comment in @comments_on_posts %>
       <% @comment = post_comment %>
-      <% if @comment.parent %>
-        <%= render 'comments/comment', comment: @comment.parent, from_reply_form: true %>
-      <% end %>
+      <%= render 'comments/comment' %>
       <%= render 'comments/form' %>
     <% end %>
   </div>

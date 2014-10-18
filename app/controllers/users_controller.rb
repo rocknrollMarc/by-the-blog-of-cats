@@ -19,13 +19,22 @@ class UsersController < ApplicationController
       @user = current_user
       userpages = Userpages.where(user_id: @user.id)
       @pages = []
+      @page_ids = []
       @posts = []
       userpages.each do |up|
         @pages << Page.find_by(id: up.page_id)
+        @page_ids << up.page_id
       end
-      @pages.each do |p|
-        @posts << Post.find_by(page_id: p.id)
+      @page_ids.each do |p_id|
+        @posts << Post.where(page_id: p_id)
       end
+      @posts.flatten!
+      # @pages.each do |p|
+      #   if Post.find_by(page_id: p.id)
+      #     @posts << Post.find_by(page_id: p.id)
+      #   end
+      #   @page_ids << p.id
+      # end
     else
       redirect_to '/users/sign_in'
     end
@@ -44,7 +53,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :image_url, :favorite_food, :favorite_litter)
+    params.require(:user).permit(:name, :image_url)
   end
 
 end

@@ -1,6 +1,12 @@
-<h1>Edit Pages</h1>
+<h1>Edit Page</h1>
 
 <%= form_tag "/pages/#{params[:id]}", method: :put do %>
+
+  <%= label_tag('page[title]', 'Title:') %>
+  <%= text_field_tag('page[title]') %>
+
+  <%= label_tag('page[summary]', 'Summary:') %>
+  <%= text_field_tag('page[summary]') %>
 
   <%= label_tag('page[theme]', 'Theme:') %>
   <%= text_field_tag('page[theme]') %>
