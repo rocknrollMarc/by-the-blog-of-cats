@@ -1,20 +1,33 @@
-<h1>Edit Page</h1>
+<div class="cf edit-header">
+  <h1 class="edit-header">Edit Page</h1>
+  <div class="delete-page pull-right">
+  <%= form_tag "/pages/#{params[:id]}", method: :delete do %>
+    <%= submit_tag("Delete Page") %>
+  <% end %>
+</div>
+</div>
 
-<%= form_tag "/pages/#{params[:id]}", method: :put do %>
+<div class="edit-page-form">
+  <%= form_tag "/pages/#{params[:id]}", method: :put do %>
 
-  <%= label_tag('page[title]', 'Title:') %>
-  <%= text_field_tag('page[title]') %>
+    <div class="edit-page-title">
+      <%= label_tag('page[title]', 'Title:') %><br/>
+      <%= text_field_tag('page[title]', "#{@page.title}") %>
+    </div>
 
-  <%= label_tag('page[summary]', 'Summary:') %>
-  <%= text_field_tag('page[summary]') %>
+    <div class="edit-textbox edit-page-summary">
+      <%= label_tag('page[summary]', 'Summary:') %><br/>
+      <%= text_area_tag('page[summary]', "#{@page.summary}", :class => "edit-textbox") %>
+    </div>
 
-  <%= label_tag('page[theme]', 'Theme:') %>
-  <%= text_field_tag('page[theme]') %>
+    <div class="edit-page-theme">
+      <%= label_tag('page[theme]', 'Theme:') %><br/>
+      <%= text_field_tag('page[theme]', "#{@page.theme}") %>
+    </div>
 
-  <%= submit_tag('Submit') %>
+    <div class="submit-button edit-page-submit">
+      <%= submit_tag('Submit') %>
+    </div>
 
-<% end %>
-
-<%= form_tag "/pages/#{params[:id]}", method: :delete do %>
-  <%= submit_tag("Delete") %>
-<% end %>
+  <% end %>
+</div>

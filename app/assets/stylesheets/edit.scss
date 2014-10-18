@@ -1,0 +1,22 @@
+/********
+ * EDIT *
+ ********/
+
+
+
+h1.edit-header,
+.delete-page,
+.delete-post {
+  float: left;
+}
+
+.delete-page,
+.delete-post {
+  margin: 19px 0 0;
+}
+
+textarea.edit-textbox {
+  /*box-shadow: 0 0 1em black;*/
+  width: 600px;
+  height: 300px;
+}

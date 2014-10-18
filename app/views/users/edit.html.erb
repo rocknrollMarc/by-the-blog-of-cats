@@ -2,11 +2,11 @@
   <div class="user-edit-form">
     <%= form_tag "/users/#{@user.id}", method: :put do %>
 
-      <div><%= label_tag('user[name]', "Name:") %><br/>
-      <%= text_field_tag('user[name]') %></div>
+      <div><%= label_tag 'user[name]', "Name:" %><br/>
+      <%= text_field_tag 'user[name]', "#{current_user.name}" %></div>
 
       <div><%= label_tag('user[image_url]', "Image URL:") %><br/>
-      <%= text_field_tag('user[image_url]') %></div>
+      <%= text_field_tag('user[image_url]', "#{current_user.image_url}", :class => "user-image_url-input") %></div>
 
       <div><%= submit_tag("Submit") %></div>
 
